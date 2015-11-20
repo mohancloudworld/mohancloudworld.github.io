@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Pages</title><link href="https://mohancloudworld.github.io/" rel="alternate"></link><link href="https://mohancloudworld.github.io/feeds/miscellaneous.atom.xml" rel="self"></link><id>https://mohancloudworld.github.io/</id><updated>2015-11-16T00:00:00+00:00</updated><entry><title>linuxscripts</title><link href="https://mohancloudworld.github.io/linuxscripts.html" rel="alternate"></link><published>2015-11-16T00:00:00+00:00</published><author><name>Mohan G</name></author><id>tag:mohancloudworld.github.io,2015-11-16:linuxscripts.html</id><summary type="html">&lt;p&gt;General Linux Scripts&lt;/p&gt;
+&lt;h2&gt;auto_restart.sh:&lt;/h2&gt;
+&lt;p&gt;After a specified local-time, this script continuously restarts the machine after a specific time interval.&lt;/p&gt;
+&lt;h2&gt;move2Trash.sh:&lt;/h2&gt;
+&lt;p&gt;This script will alias 'rm' in such a way that when a file/folder is deleted from command line, it will be moved into Trash.&lt;/p&gt;
+&lt;h2&gt;random_seq_gen.cpp:&lt;/h2&gt;
+&lt;p&gt;A Linear congruential generator. This code will generate a random sequence for a given "seed" and "length", after skipping "skip_cnt" elements.This can be used to genarate passwords, key-files and so on. All that user have to remember are "seed", "skip_cnt" and "length".&lt;/p&gt;</summary></entry></feed>

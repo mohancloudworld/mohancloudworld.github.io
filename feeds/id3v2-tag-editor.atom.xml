@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Pages</title><link href="https://mohancloudworld.github.io/" rel="alternate"></link><link href="https://mohancloudworld.github.io/feeds/id3v2-tag-editor.atom.xml" rel="self"></link><id>https://mohancloudworld.github.io/</id><updated>2015-11-19T00:00:00+00:00</updated><entry><title>ID3v2-tag-editor</title><link href="https://mohancloudworld.github.io/id3v2-tag-editor.html" rel="alternate"></link><published>2015-11-19T00:00:00+00:00</published><author><name>Mohan G</name></author><id>tag:mohancloudworld.github.io,2015-11-19:id3v2-tag-editor.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;ID3v2-tag-editor is a command line editor for Id3v2 metadata for audio (MP3) files &lt;/li&gt;
+&lt;li&gt;Supported versions: Id3v2.3 and Id3v2.4&lt;/li&gt;
+&lt;li&gt;It has two modes of operation (a) Command-line mode (b) Interactive mode&lt;/li&gt;
+&lt;li&gt;Supported frames for reading: Text info frames, URL link frames, APIC, PCNT, POPM, USLT, GEOB, MCDI, COMM, USER&lt;/li&gt;
+&lt;li&gt;Supported frames for writing: artist, album, title, comments, genre, year, track no, album-art (attached-picture) &lt;/li&gt;
+&lt;li&gt;Deletion of frames: 
+    (a) Can delete all frames at once. 
+    (b) In 'Interactive-mode', can delete individual frames (only that are supported for 'writing')&lt;/li&gt;
+&lt;li&gt;Supported flags: 'Unsynchronisation', 'Data length indicator'&lt;/li&gt;
+&lt;li&gt;While writing album-art info (APIC frame), image is re-sized to (640,960), to save space&lt;/li&gt;
+&lt;li&gt;Multiple (two) levels of verbosity is supported&lt;/li&gt;
+&lt;li&gt;In verbose (-vv) mode, to display frames with binary data (APIC, GEOB, MCDI), the data is written into files in local directory. In all other modes, binary data is skipped.&lt;/li&gt;
+&lt;li&gt;Most of the user input is parsed as unicode-data, so user can feed information in multiple languages&lt;/li&gt;
+&lt;li&gt;The usage is compatible with "id3v2" linux utility&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;strong&gt;Known Issues:&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;While modifying a frame, skips writing all other similar frames into output file
+(It should skip frames with same 'Content type' only)&lt;/li&gt;
+&lt;li&gt;Repetition of frames while reading/writing is not checked &lt;/li&gt;
+&lt;li&gt;'Data length indicator' flag is not used while writing frames &lt;/li&gt;
+&lt;li&gt;writing and deleting of frames is limited to only few types of frames &lt;/li&gt;
+&lt;li&gt;Other frames &amp;amp; flags need to be implemented&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;strong&gt;Usage:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;usage: id3v2-tag-editor.py [-h] [-v] [-D] [-l] [-t TITLE] [-A ALBUM]
+                           [-a ARTIST] [-c COMMENTS_INFO] [-g GENRE] [-y YEAR]
+                           [-T TRACK] [-P ALBUM_ART_INFO] [-i]
+                           inp_file [inp_file ...]&lt;/p&gt;
+&lt;p&gt;for more detail usage info type:
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py --help&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Command-line mode:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;To display all the ID3v2 frames in a file, use option -l or --list.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -l inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;To increase the verbosity of the display, use "-vv" option.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -l -vv inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;To display all the ID3v2 frames in multiple files, add all files to the command-line.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -l inp_file1 inp_file2 ...&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;To add/modify title frame of a file, use option -t or --title.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -t TITLE inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;To add/modify album-art-info frame of a file, use option -P or --picture. 
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py --picture IMAGE inp_file&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -P IMAGE,IMAGE-TYPE,IMAGE-DESCRIPTION inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;To add/modify multiple frames of a file, concatenate the options. Refer to "usage" info for all such editable frames.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -t TITLE -A ALBUM inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;To delete all the ID3v2 frames in a file, use option -D or --delete-all.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -D inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Interactive mode:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;In this mode, user can interactively list, add/modify and delete (all or individual) frames. Can save changes and/or exit at any desired state. &lt;br /&gt;
+To enter into interactive mode, use option -i or --interactive.
+&lt;pre&gt;&lt;code&gt;./id3v2-tag-editor.py -i inp_file&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;</summary></entry></feed>

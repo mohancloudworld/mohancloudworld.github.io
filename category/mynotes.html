@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My Pages - MyNotes</title>
+        <link rel="stylesheet" href="https://mohancloudworld.github.io/theme/css/main.css" />
+        <link href="https://mohancloudworld.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Pages Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://mohancloudworld.github.io/">My Pages </a></h1>
+                <nav><ul>
+                    <li><a href="https://mohancloudworld.github.io/category/id3v2-tag-editor.html">ID3v2-tag-editor</a></li>
+                    <li><a href="https://mohancloudworld.github.io/category/miscellaneous.html">Miscellaneous</a></li>
+                    <li class="active"><a href="https://mohancloudworld.github.io/category/mynotes.html">MyNotes</a></li>
+                    <li><a href="https://mohancloudworld.github.io/category/parivartan.html">Parivartan</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://mohancloudworld.github.io/audio.html">Audio</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-11-18T00:00:00+00:00">
+                Published: Wed 18 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/mynotes.html">MyNotes</a>.</p>
+
+</footer><!-- /.post-info --><p>Note: Some of the following commands work when logged-in locally or via VNC-Viewer but does not work when logged-in remotly (SSH).
+In that case set the shell environment parameter DISPLAY to ":0.0" (type 'DISPLAY=:0.0' in logged-in shell).</p>
+<h2>Play ogg/oga files:</h2>
+<p>(1) (a) echo ogg123 <file> |at now
+     (b) ogg123 <file>
+            Note: 'DISPLAY=:0.0' is needed</p>
+<h2>Play mp3 files:</h2>
+<p>(1) mpg123 <file></p>
+<h2>Play wav files:</h2>
+<p>(1) On Default Sound Card (hw:0)
+    aplay <file>
+    Note: 'DISPLAY=:0.0' is needed
+    (or)
+    aplay -D hw:0 <file></p>
+<h2>Change Audio Mixer Setting:</h2>
+<p>(1) In CLI, using interactive menu
+    alsamixer
+    Note: 'DISPLAY=:0.0' is needed
+(2) In CLI, non-interactive 
+    (a) set playback volume to X% of maximum [Range 0-100%]
+        amixer set Master playback <percent>%
+        e.g.: amixer set Master playback 90%
+    (b) increment playback volume by X% of maximum [add '+' sign]
+        amixer set Master playback <percent>%+
+        e.g.: amixer set Master playback 5%+
+    (c) decrement playback volume by X% of maximum [add '-' sign]
+        amixer set Master playback <percent>%-
+        e.g.: amixer set Master playback 5%-
+    (d) Without mentioning the soundcard (automatically 'Default' is used) 
+        amixer set Master playback <percent>%
+        Note: 'DISPLAY=:0.0' is needed</p>
+<h2>Pulseaudio for multiple users:</h2>
+<p>See: http://billauer.co.il/blog/2014/01/pa-multiple-users/
+When we login into a desktop user, the audio is only accesseble only to that user. This procedure will enable access to other users while loging-in to that user through terminal, while logged into the default desktop user via GUI.
+(1) As default desktop user
+    (a) If not done already, creating a custom configuration for the default desktop user
+        mkdir ~/.pulse/
+        cp /etc/pulse/default.pa ~/.pulse/
+    (b) Enable pulse audio to accept connections through loop-back TCP port
+        load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
+    (c) Restart pulse audio
+        pulseaudio -k # kill
+        pulseaudio -D # start daemon
+(2) As another user (for which you want to enable pulse audio access concurrently with default desktop user)
+    (a) Specify the access method
+        mkdir ~/.pulse
+        echo "default-server = 127.0.0.1" &gt; ~/.pulse/client.conf
+        Note: If using Tor browser-bundle, firefox runs in "<TOR_ROOT_DIR>/Browser/" directory and is its home directory. So create the ".pulse/client.conf" in this directory.
+    (b) Now application running as this user (changed via terminal {using 'su' or 'ssh'} or switch user via GUI) can access audio. 
+        e.g.,start browser via terminal through following command
+        firefox --display=:0
+        (or)
+        google-chrome --display=:0</p>
+<h2>Pulseaudio Dynamic Range Compression</h2>
+<p>See: https://github.com/gotbletu/shownotes/blob/master/pulseaudio-dynamic-range-compression.md
+    http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#tth_sEc2.92
+    https://www.youtube.com/watch?v=91qs3fux5HY
+    https://askubuntu.com/questions/31580/is-there-a-way-of-leveling-compressing-the-sound-system-wide
+(1) Install dynamic-range-compression plugin (ladspa-swh-plugins) and its dependencies 
+    yum install pulseaudio pavucontrol ladspa-swh-plugins
+(2) If not done already, creating a custom configuration for the default desktop user
+        mkdir ~/.pulse/
+        cp /etc/pulse/default.pa ~/.pulse/
+(3) Append following lines to ~/.pulse/default.pa
+    .ifexists module-ladspa-sink.so
+    .nofail
+    load-module module-ladspa-sink sink_name=dynamic-range-compression plugin=sc4m_1916 label=sc4m control=1,1.5,401,-30,20,5,12
+    .fail
+    .endif
+(4) Reboot Pulse-Audio 
+    pulseaudio --kill
+    pulseaudio --start
+(5) Now play some audio, then open pavucontrol and change the stream to the LADSPA compressor. Or set it as default output option</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://mohancloudworld.github.io/git.html" rel="bookmark"
+                           title="Permalink to GIT">GIT</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-10T00:00:00+00:00">
+                Published: Tue 10 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/mynotes.html">MyNotes</a>.</p>
+
+</footer><!-- /.post-info -->                <h2>Install:</h2>
+<p>(1) yum install git
+    (or)
+    yum install git-core</p>
+<h2>First-Time Git Setup:</h2>
+<p>(1) Define your Identity
+    git config --global user.name "<user name>"
+    git config --global user.email <email ID></p>
+<p>(2) To check the settings
+    git config --list</p>
+<h2>Frequently Used Commands:</h2>
+<p>(1) To begin tracking new files, to stage files, and to do other ...</p>
+                <a class="readmore" href="https://mohancloudworld.github.io/git.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://mohancloudworld.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My Pages - Mohan G</title>
+        <link rel="stylesheet" href="https://mohancloudworld.github.io/theme/css/main.css" />
+        <link href="https://mohancloudworld.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Pages Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://mohancloudworld.github.io/">My Pages </a></h1>
+                <nav><ul>
+                    <li><a href="https://mohancloudworld.github.io/category/id3v2-tag-editor.html">ID3v2-tag-editor</a></li>
+                    <li><a href="https://mohancloudworld.github.io/category/miscellaneous.html">Miscellaneous</a></li>
+                    <li><a href="https://mohancloudworld.github.io/category/mynotes.html">MyNotes</a></li>
+                    <li><a href="https://mohancloudworld.github.io/category/parivartan.html">Parivartan</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://mohancloudworld.github.io/id3v2-tag-editor.html">ID3v2-tag-editor</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-11-19T00:00:00+00:00">
+                Published: Thu 19 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/id3v2-tag-editor.html">ID3v2-tag-editor</a>.</p>
+
+</footer><!-- /.post-info --><ul>
+<li>ID3v2-tag-editor is a command line editor for Id3v2 metadata for audio (MP3) files </li>
+<li>Supported versions: Id3v2.3 and Id3v2.4</li>
+<li>It has two modes of operation (a) Command-line mode (b) Interactive mode</li>
+<li>Supported frames for reading: Text info frames, URL link frames, APIC, PCNT, POPM, USLT, GEOB, MCDI, COMM, USER</li>
+<li>Supported frames for writing: artist, album, title, comments, genre, year, track no, album-art (attached-picture) </li>
+<li>Deletion of frames: 
+    (a) Can delete all frames at once. 
+    (b) In 'Interactive-mode', can delete individual frames (only that are supported for 'writing')</li>
+<li>Supported flags: 'Unsynchronisation', 'Data length indicator'</li>
+<li>While writing album-art info (APIC frame), image is re-sized to (640,960), to save space</li>
+<li>Multiple (two) levels of verbosity is supported</li>
+<li>In verbose (-vv) mode, to display frames with binary data (APIC, GEOB, MCDI), the data is written into files in local directory. In all other modes, binary data is skipped.</li>
+<li>Most of the user input is parsed as unicode-data, so user can feed information in multiple languages</li>
+<li>The usage is compatible with "id3v2" linux utility</li>
+</ul>
+<h2><strong>Known Issues:</strong></h2>
+<ul>
+<li>While modifying a frame, skips writing all other similar frames into output file
+(It should skip frames with same 'Content type' only)</li>
+<li>Repetition of frames while reading/writing is not checked </li>
+<li>'Data length indicator' flag is not used while writing frames </li>
+<li>writing and deleting of frames is limited to only few types of frames </li>
+<li>Other frames &amp; flags need to be implemented</li>
+</ul>
+<h2><strong>Usage:</strong></h2>
+<p>usage: id3v2-tag-editor.py [-h] [-v] [-D] [-l] [-t TITLE] [-A ALBUM]
+                           [-a ARTIST] [-c COMMENTS_INFO] [-g GENRE] [-y YEAR]
+                           [-T TRACK] [-P ALBUM_ART_INFO] [-i]
+                           inp_file [inp_file ...]</p>
+<p>for more detail usage info type:
+<pre><code>./id3v2-tag-editor.py --help</code></pre></p>
+<h3><strong>Command-line mode:</strong></h3>
+<p>To display all the ID3v2 frames in a file, use option -l or --list.
+<pre><code>./id3v2-tag-editor.py -l inp_file</code></pre></p>
+<p>To increase the verbosity of the display, use "-vv" option.
+<pre><code>./id3v2-tag-editor.py -l -vv inp_file</code></pre></p>
+<p>To display all the ID3v2 frames in multiple files, add all files to the command-line.
+<pre><code>./id3v2-tag-editor.py -l inp_file1 inp_file2 ...</code></pre></p>
+<p>To add/modify title frame of a file, use option -t or --title.
+<pre><code>./id3v2-tag-editor.py -t TITLE inp_file</code></pre></p>
+<p>To add/modify album-art-info frame of a file, use option -P or --picture. 
+<pre><code>./id3v2-tag-editor.py --picture IMAGE inp_file</code></pre>
+<pre><code>./id3v2-tag-editor.py -P IMAGE,IMAGE-TYPE,IMAGE-DESCRIPTION inp_file</code></pre></p>
+<p>To add/modify multiple frames of a file, concatenate the options. Refer to "usage" info for all such editable frames.
+<pre><code>./id3v2-tag-editor.py -t TITLE -A ALBUM inp_file</code></pre></p>
+<p>To delete all the ID3v2 frames in a file, use option -D or --delete-all.
+<pre><code>./id3v2-tag-editor.py -D inp_file</code></pre></p>
+<h3><strong>Interactive mode:</strong></h3>
+<p>In this mode, user can interactively list, add/modify and delete (all or individual) frames. Can save changes and/or exit at any desired state. <br />
+To enter into interactive mode, use option -i or --interactive.
+<pre><code>./id3v2-tag-editor.py -i inp_file</code></pre></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://mohancloudworld.github.io/audio.html" rel="bookmark"
+                           title="Permalink to Audio">Audio</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-18T00:00:00+00:00">
+                Published: Wed 18 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/mynotes.html">MyNotes</a>.</p>
+
+</footer><!-- /.post-info -->                <p>Note: Some of the following commands work when logged-in locally or via VNC-Viewer but does not work when logged-in remotly (SSH).
+In that case set the shell environment parameter DISPLAY to ":0.0" (type 'DISPLAY=:0.0' in logged-in shell).</p>
+<h2>Play ogg/oga files:</h2>
+<p>(1) (a) echo ogg123 <file> |at now ...</file></p>
+                <a class="readmore" href="https://mohancloudworld.github.io/audio.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://mohancloudworld.github.io/linuxscripts.html" rel="bookmark"
+                           title="Permalink to linuxscripts">linuxscripts</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-16T00:00:00+00:00">
+                Published: Mon 16 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/miscellaneous.html">Miscellaneous</a>.</p>
+
+</footer><!-- /.post-info -->                <p>General Linux Scripts</p>
+<h2>auto_restart.sh:</h2>
+<p>After a specified local-time, this script continuously restarts the machine after a specific time interval.</p>
+<h2>move2Trash.sh:</h2>
+<p>This script will alias 'rm' in such a way that when a file/folder is deleted from command line, it will be moved into Trash.</p>
+<h2>random_seq_gen.cpp:</h2>
+<p>A ...</p>
+                <a class="readmore" href="https://mohancloudworld.github.io/linuxscripts.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://mohancloudworld.github.io/git.html" rel="bookmark"
+                           title="Permalink to GIT">GIT</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-10T00:00:00+00:00">
+                Published: Tue 10 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/mynotes.html">MyNotes</a>.</p>
+
+</footer><!-- /.post-info -->                <h2>Install:</h2>
+<p>(1) yum install git
+    (or)
+    yum install git-core</p>
+<h2>First-Time Git Setup:</h2>
+<p>(1) Define your Identity
+    git config --global user.name "<user name>"
+    git config --global user.email <email ID></p>
+<p>(2) To check the settings
+    git config --list</p>
+<h2>Frequently Used Commands:</h2>
+<p>(1) To begin tracking new files, to stage files, and to do other ...</p>
+                <a class="readmore" href="https://mohancloudworld.github.io/git.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://mohancloudworld.github.io/parivartan.html" rel="bookmark"
+                           title="Permalink to Parivartan">Parivartan</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-10T00:00:00+00:00">
+                Published: Tue 10 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://mohancloudworld.github.io/author/mohan-g.html">Mohan G</a>
+        </address>
+<p>In <a href="https://mohancloudworld.github.io/category/parivartan.html">Parivartan</a>.</p>
+
+</footer><!-- /.post-info -->                <p>A Mozilla Firefox Extension to converter text from an Indian language to English and vice versa. Also supports Katapayadi sankhya system.</p>
+<p>This can be installed from <a href="https://addons.mozilla.org/en-US/firefox/addon/parivartan/" target="_blank">Firefox addons page</a>.</p>
+<p><b>Supported formats:</b><ul>
+<li>Indian: Devanagari (Sanskrit/Hindi/Marathi), Telugu, Kannada, Gujarati, Tamil, Bengali, Gurmukhi (Punjabi), Malayalam and Oriya (Odia).</li>
+<li>English: ITRANS, ISO-15919 ...</li></ul></p>
+                <a class="readmore" href="https://mohancloudworld.github.io/parivartan.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://mohancloudworld.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
